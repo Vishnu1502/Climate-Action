@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking</title>
+    <link rel="stylesheet" href="progressTrackingStyles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Your Progress</h1>
+        <div class="home-button-container">
+            <a href="homepage2.html" class="home-button">Go to Home Page</a>
+          </div>
+    </header>
+    <div class="content">
+        <!-- Progress Overview Section -->
+        <section class="overview">
+            <h2>Progress Overview</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 70%;"></div>
+            </div>
+            <p>Total Carbon Reduction: 3000 kg CO2</p>
+        </section>
+
+        <!-- Achievements and Badges Section -->
+        <section class="achievements">
+            <h2>Achievements & Badges</h2>
+            <div class="badges">
+                <div class="badge">
+                    <img src="badge1.png" alt="Badge 1">
+                    <p>Challenge Master</p>
+                </div>
+                <div class="badge">
+                    <img src="badge2.png" alt="Badge 2">
+                    <p>Eco Warrior</p>
+                </div>
+                <!-- Add more badges as needed -->
+            </div>
+        </section>
+
+        <!-- Detailed Progress Graphs Section -->
+        <section class="progress-graphs">
+            <h2>Detailed Progress</h2>
+            <canvas id="carbonReductionChart"></canvas>
+            <div class="progress-info">
+                <p>Your carbon footprint has steadily decreased over the past few months due to your active participation in climate action challenges. This graph illustrates the reduction in your carbon footprint, showing the positive impact of your efforts.</p>
+                <p>Keep up the good work! Remember, every small step counts in making a significant difference. Continue participating in challenges and adopting eco-friendly practices to further reduce your carbon footprint.</p>
+            </div>
+        </section>
+
+        <!-- Completed Challenges Section -->
+        <section class="completed-challenges">
+            <h2>Completed Challenges</h2>
+            <ul>
+                <li>Reduce Meat Consumption - Completed on 12th July</li>
+                <li>Use Public Transportation - Completed on 5th July</li>
+                <!-- Add more completed challenges as needed -->
+            </ul>
+        </section>
+
+        <!-- Upcoming Challenges Section -->
+        <section class="upcoming-challenges">
+            <h2>Upcoming Challenges</h2>
+            <ul>
+                <li>Start Recycling Plastic</li>
+                <li>Plant Trees in Your Community</li>
+                <!-- Add more upcoming challenges as needed -->
+            </ul>
+        </section>
+
+        <!-- Personalized Tips Section -->
+        <section class="personalized-tips">
+            <h2>Personalized Tips</h2>
+            <p>Try to reduce your meat consumption by exploring vegetarian recipes.</p>
+            <!-- Add more tips as needed -->
+        </section>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+            <button onclick="location.href='homepage2.html'">Home</button>
+            <button onclick="location.href='ClimateActionChallenges.html'">Climate Action Challenges</button>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('carbonReductionChart').getContext('2d');
+        const carbonReductionChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Carbon Footprint (kg CO2)',
+                    data: [25000, 24000, 23000, 22000, 21000, 20000, 19000],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Carbon Footprint (kg CO2)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climate Action Tracker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Styles/MenuFlex.css">
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+#main {
+  max-width: 1280px;
+  margin: auto;
+  background: #eee;
+  padding: 10px;
+  min-height: 100vh;
+}
+.logo {
+  padding-right: 30px;
+  padding-top: 10px;
+  width: 150px; /* Adjusted logo size */
+}
+#navbarcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #00b300; /* Catchy green background */
+}
+#navbarcontainer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
+  flex: 1 0 0%;
+}
+#navbarcontainer a {
+  padding: 10px;
+  display: block;
+  color: rgb(17, 4, 48);
+  text-decoration: none;
+  font-size: 1rem;
+}
+#navbarcontainer a:hover {
+  background: #000;
+  color: #fff;
+}
+.icon {
+  padding: 5px;
+  margin: 0 1rem;
+  background: transparent;
+  border: none;
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.icon .fa-times-circle,
+.icon span {
+  position: fixed;
+  left: -100vw;
+}
+.icon:hover {
+  background: #fff;
+}
+.icon:focus {
+  outline: 1px dotted #ccc;
+}
+@media only screen and (max-width: 768px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+  .icon {
+    display: block;
+  }
+  /* lets hide the navbar off screen but turn it into a sliding side menu for small screens*/
+  #navbarcontainer ul {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    padding-top: 4rem;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    max-width: 480px;
+    background: #f9f9f9;
+    border-right: 1px solid #000;
+    transform: translateX(-100%);
+    opacity: 0;
+    /* transition:transform .5s ease-in-out,opacity .3s linear; allows menu to slide out slowly*/
+  }
+  .menu-open #navbarcontainer ul {
+    transform: translateX(0);
+    opacity: 1;
+    box-shadow: 0 0 100vw rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out, opacity 0.3s linear;
+  }
+  #navbarcontainer li,
+  #navbarcontainer a {
+    background: #fff;
+  }
+  #navbarcontainer li:first-child a {
+    border-top: 1px solid #000;
+  }
+  #navbarcontainer a {
+    border-bottom: 1px solid #000;
+  }
+  .menu-open .icon .fa-times-circle {
+    position: fixed;
+    z-index: 1000;
+    left: 0.8rem;
+    top: 0.8rem;
+  }
+  /*.menu-open .icon .fa-bars{position:fixed;left:-100vw}*/
+}
+.slideshow-container {
+  width: 600px;
+  height: 350px; /* Fixed height */
+  position: relative;
+  margin: auto;
+  float: left;
+  overflow: hidden; /* Ensures images don't overflow */
+}
+.mySlides {
+  display: none;
+  width: 100%;
+  height: 100%; /* Fixed height */
+}
+img {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%; /* Fixed height */
+  object-fit: cover; /* Ensures images cover the container */
+}
+.text {
+  color: #000;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+.climate-info {
+  float: right;
+  max-width: 600px;
+  margin-left: 20px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #00b300; /* Catchy green background */
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 24px;
+}
+footer a:hover {
+  color: #000;
+}
+.tracker-info {
+  clear: both;
+  padding: 20px;
+  text-align: center;
+}
+.tracker-info p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.tracker-info button {
+  background-color: #4c88c4; /* Match the catchy green color */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.tracker-info button:hover {
+  background-color: #04045e; /* Darken the button on hover */
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #bbd47f;
+}
+.home-button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.home-button {
+  display: inline-block;
+  background-color: #3d3dae; /* Match the catchy green color */
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #04045e; /* Darken the button on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+</style>
+</head>
+<body>
+<div id="main">
+  <nav>
+    <div id="navbarcontainer"> <img class="logo" src="Designer (5).png" alt="logo">
+      <ul>
+        <li> <a href="#home" class="active">Home</a> </li>
+        <li> <a href="signinandsignup.html" target="_blank">Log in</a> </li>
+        <li> <a href="Calculater.html">Calculate Carbon Footprint</a> </li>
+        <li> <a href="ClimateActionChallenges.html">Climate Action Challenges</a> </li>
+        <li> <a href="ProgressTracking.html">Progress Tracking</a> </li>
+        <li> <a href="AboutUs.html">About Us</a> </li>
+        <li> <a href="ContactUs.html">Contact Us</a> </li>
+        <!-- <li> <a href="#ContactUs.html" id="lnkcontactusdialog" class="lnkjoinus">Contact Us</a> </li> -->
+        <!-- <li> <a href="#Contac">Contact Us</a> </li> -->
+      </ul>
+      <button class="icon"><i class="fa fa-bars"></i><i class="fa fa-times-circle"></i><span>Open and Close menu</span></button>
+    </div>
+  </nav>
+  <div class="content">
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img src="images (1).jpeg" alt="Image 1">
+        <div class="text">Climate action, not climate change</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="images (2).jpeg" alt="Image 2">
+        <div class="text">Think green. Be green. Stop polluting</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="images (6).jpeg" alt="Image 3">
+        <div class="text">Pollution is never a solution</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="images (7).jpeg" alt="Image 3">
+        <div class="text">Go green to make globe clean</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="images (5).jpeg" alt="Image 3">
+        <div class="text">Save earth and conserve future</div>
+      </div>
+    </div>
+    <div class="climate-info">
+      <h2>Climate Information</h2>
+      <p>Climate change refers to long-term changes in temperature, precipitation, wind patterns, and other elements of the Earth's climate system. It is primarily caused by human activities, particularly the emission of greenhouse gases from burning fossil fuels, deforestation, and industrial processes.</p>
+      <p>To combat climate change, various measures can be taken, such as reducing carbon emissions, transitioning to renewable energy sources, improving energy efficiency, and protecting and restoring forests and other natural ecosystems.</p>
+      <hr>
+      <p>To Track the Climate Action Join with Us and Sign in </p>
+    </div>
+    <div class="tracker-info">
+        <p>To track your carbon footprint and take part in climate action, please sign in.</p>
+       <div class="home-button-container">
+        <a href="signinandsignup.html" class="home-button">Sign In</a>
+      </div>
+      </div>
+      <!-- <div class="home-button-container">
+        <a href="homepage2.html" class="home-button">Go to Home Page</a>
+      </div> -->
+      
+  </div>
+</div>
+<footer>
+  <a href="https://www.facebook.com/christy.mclaughlin.102" target="_blank" id="facebook"><i class="fa fa-facebook-square"></i> Facebook</a>
+  <a href="https://twitter.com/ChristyMarieEm" target="_blank" id="twitter"><i class="fa fa-twitter-square"></i> Twitter</a>
+  <br>
+  <br>
+  <p style="text-align: center;">@Climate_action_tracker</p>
+</footer>
+<script>
+(function(d ) {
+   'use strict'; 
+  const icon = d.querySelector( '.icon' );
+  const theBody = d.querySelector('body');
+   
+   icon.addEventListener( 'click', function() { 
+   	theBody.classList.toggle('menu-open');
+    });
+
+}( document ));
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let slides = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+</body>
+</html>

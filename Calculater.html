@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="calculaterstyles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Carbon Footprint Calculator</h1>
+    <form id="calculator-form">
+      <label for="electric-bill">Monthly Electric Bill (₹):</label>
+      <input type="number" id="electric-bill" required>
+
+      <label for="gas-bill">Monthly Gas Bill (₹):</label>
+      <input type="number" id="gas-bill" required>
+
+      <label for="oil-bill">Monthly Oil Bill (₹):</label>
+      <input type="number" id="oil-bill" required>
+
+      <label for="yearly-mileage">Yearly Car Mileage (km):</label>
+      <input type="number" id="yearly-mileage" required>
+
+      <label for="bike-mileage">Yearly Bike/Two-Wheeler Mileage (km):</label>
+      <input type="number" id="bike-mileage" required>
+
+      <label for="meat-consumption">Weekly Meat Consumption (kg):</label>
+      <input type="number" id="meat-consumption" required>
+      
+      <label for="short-flights">Number of Short Flights (4 hours or less):</label>
+      <input type="number" id="short-flights" required>
+
+      <label for="long-flights">Number of Long Flights (4 hours or more):</label>
+      <input type="number" id="long-flights" required>
+
+      <label for="recycle-newspaper">Do you recycle newspaper?</label>
+      <input type="checkbox" id="recycle-newspaper">
+
+      <label for="recycle-aluminum">Do you recycle aluminum and tin?</label>
+      <input type="checkbox" id="recycle-aluminum">
+
+      <button type="button" onclick="calculateCarbonFootprint()">Calculate</button>
+    </form>
+
+    <div id="result">
+      <h2>Results:</h2>
+      <p id="carbon-footprint">Carbon Footprint: <span id="footprint-value"></span> kg/year</p>
+      <p id="footprint-status">Status: <span id="status"></span></p>
+      <p id="suggestions">Suggestions: <span id="suggestions-text"></span></p>
+      <canvas id="footprint-chart"></canvas>
+      <div class="navigation-buttons">
+        <!-- <button onclick="window..href='homepage2'">Home</button> -->
+        <a href="homepage2.html" class="home-button">Go to Home Page</a>
+        <a href="ClimateActionChallenges.html" class="home-button">Climate Action Challenges</a>
+        <!-- <button onclick="window.location.href='climate-action-challenges.html'">Climate Action Challenges</button> -->
+      </div>
+    </div>
+  </div>
+
+  <script src="calculaterscript.js"></script>
+</body>
+</html>
